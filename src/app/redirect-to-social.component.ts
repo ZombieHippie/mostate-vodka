@@ -35,8 +35,14 @@ export class RedirectToSocialComponent implements OnInit {
       this.redirectTo += `?vodka=${fullStoryId}`
     }
 
-    // Set that they have seen this screen before
-    localStorage.setItem('social_immediate_redirect', 'true')
+    // If this is not the first time seeing this redirection page, set DURATION to only a second
+    if (localStorage.getItem('social_immediate_redirect')) {
+      this.DURATION = 1000;
+    } else {
+      // Set that they have seen this screen before
+      localStorage.setItem('social_immediate_redirect', 'true')
+    }
+
   }
 
   ngOnInit () {
