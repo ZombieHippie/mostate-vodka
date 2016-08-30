@@ -1,0 +1,6 @@
+<div class="notice">
+  <h1 [innerHTML]="message"></h1>
+  <a [attr.href]="redirectTo">{{ domain }} ↗️</a>
+  <div class="text-xs-center" id="redirect-progress">Redirecting</div>
+  <progress class="progress progress-striped progress-info" [value]="time" [max]="DURATION" aria-describedby="redirect-progress"></progress>
+</div>
