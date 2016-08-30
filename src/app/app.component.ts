@@ -51,7 +51,8 @@ export class AppComponent implements OnInit {
   getFilters(): EventFilter[] {
     let timeNow = Date.now()
     return [
-      (e) => isEventHappening(e, timeNow)
+      (e) => isEventHappening(e, timeNow),
+      (e) => isEventNotBy(e, "Theta Chi")
     ]
   }
 
@@ -115,6 +116,11 @@ function isEventHappening(event: DataEvent, timeNow: number): boolean {
   if ((event.startTime || event.meetTime || 0) > timeNow - hour) return true
   return false
 }
+
+function isEventNotBy(event: DataEvent, sponsorName: string) {
+  return event.sponsor !== sponsorName
+}
+
 function hasEventStarted(event: DataEvent, timeNow: number): boolean {
   // if event started or starts less than an hour ago, or has not finished yet
   if ((event.startTime || event.meetTime || 0) < timeNow) return true
